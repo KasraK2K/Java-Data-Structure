@@ -9,29 +9,22 @@ public class Array {
     }
 
     public void insert(int item) {
-        if (items.length == count) {
-            int[] newItems = new int[count * 2];
-            for (int i = 0; i < count; i++) {
-                newItems[i] = items[i];
-            }
-            items = newItems;
-        }
+        doubleOnFilled();
         items[count++] = item;
     }
 
     public void insertAt(int index, int item) {
-        if (index < 0 || index > count)
-            throw new IllegalArgumentException();
-        count++;
+        checkIndexExist(index);
+        doubleOnFilled();
         for (int i = count; i > index; i--) {
             items[i] = items[i - 1];
         }
         items[index] = item;
+        count++;
     }
 
     public void removeAt(int index) {
-        if (index < 0 || index > count)
-            throw new IllegalArgumentException();
+        checkIndexExist(index);
         for (int i = index; i < count; i++)
             items[i] = items[i + 1];
         count--;
@@ -72,5 +65,20 @@ public class Array {
     public void print() {
         for (int i = 0; i < count; i++)
             System.out.println(items[i]);
+    }
+
+    private void checkIndexExist(int index) {
+        if (index < 0 || index > count)
+            throw new IllegalArgumentException();
+    }
+
+    private void doubleOnFilled() {
+        if (items.length == count) {
+            int[] newItems = new int[count * 2];
+            for (int i = 0; i < count; i++) {
+                newItems[i] = items[i];
+            }
+            items = newItems;
+        }
     }
 }
