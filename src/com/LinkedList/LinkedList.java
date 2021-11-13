@@ -135,6 +135,23 @@ public class LinkedList {
         return a.value;
     }
 
+    public void printMiddle() {
+        if (isEmpty()) throw new NoSuchElementException();
+
+        Node a = first;
+        Node b = first;
+        while (b != last && b.next != last) {
+            a = a.next;
+            b = b.next;
+            if (b != last) b = b.next;
+            if (b == last) {
+                System.out.println("Middle element is: " + a.value);
+                return;
+            }
+        }
+        System.out.println("Middle element is: " + a.value + " and " + a.next.value);
+    }
+
     private boolean isEmpty() {
         return first == null;
     }

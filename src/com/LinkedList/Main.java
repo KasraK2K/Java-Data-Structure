@@ -25,6 +25,8 @@ public class Main {
         System.out.println(list.indexOf(30));
         System.out.println(list.contains(30));
         System.out.println(list.size());
+
+        list.printMiddle();
     }
 
 }
