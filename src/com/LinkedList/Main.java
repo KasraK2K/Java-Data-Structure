@@ -27,6 +27,7 @@ public class Main {
         System.out.println(list.size());
 
         list.printMiddle();
+        list.hasLoop();
     }
 
 }

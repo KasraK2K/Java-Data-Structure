@@ -138,18 +138,32 @@ public class LinkedList {
     public void printMiddle() {
         if (isEmpty()) throw new NoSuchElementException();
 
-        Node a = first;
-        Node b = first;
-        while (b != last && b.next != last) {
-            a = a.next;
-            b = b.next;
-            if (b != last) b = b.next;
-            if (b == last) {
-                System.out.println("Middle element is: " + a.value);
+        Node slow = first;
+        Node fast = first;
+        while (fast != last && fast.next != last) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        if (fast == last)
+            System.out.println("Middle element is: " + slow.value);
+        else
+            System.out.println("Middle element is: " + slow.value + " and " + slow.next.value);
+    }
+
+    public void hasLoop() {
+        if (isEmpty()) throw new NoSuchElementException();
+
+        var slow = first;
+        var fast = first;
+        while (fast != last && fast.next != last) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                System.out.println("Loop found");
                 return;
             }
         }
-        System.out.println("Middle element is: " + a.value + " and " + a.next.value);
+        System.out.println("No loop found");
     }
 
     private boolean isEmpty() {
