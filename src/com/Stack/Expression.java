@@ -13,8 +13,8 @@ public class Expression {
         Stack<Character> stack = new Stack<Character>();
 
         for (char ch : input.toCharArray()) {
-            if (isLeftBracket(ch)) stack.push(ch);
-            else if (isRightBracket(ch)) {
+            if (isInLeftBracket(ch)) stack.push(ch);
+            else if (isInRightBracket(ch)) {
                 if (stack.isEmpty()) return false;
                 if (!bracketMatch(stack.pop(), ch)) return false;
             }
@@ -23,11 +23,11 @@ public class Expression {
         return stack.empty();
     }
 
-    private boolean isLeftBracket(char ch) {
+    private boolean isInLeftBracket(char ch) {
         return leftBrackets.contains(ch);
     }
 
-    private boolean isRightBracket(char ch) {
+    private boolean isInRightBracket(char ch) {
         return rightBrackets.contains(ch);
     }
 
